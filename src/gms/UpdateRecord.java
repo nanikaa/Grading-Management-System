@@ -1,6 +1,7 @@
 package gms;
 
 import javax.swing.*;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
@@ -84,7 +85,7 @@ public class UpdateRecord extends JFrame {
         lblNewLabel_1_1.setBounds(129, 134, 190, 17);
         contentPane.add(lblNewLabel_1_1);
 
-        comboBox_courseCode = new JComboBox();
+        comboBox_courseCode = new JComboBox<>(ComboBoxModels.courseCodeModel);
         comboBox_courseCode.setBounds(129, 155, 190, 22);
         contentPane.add(comboBox_courseCode);
 

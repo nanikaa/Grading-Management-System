@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import dao.DatabaseConnector;
+
 public class LoginHandler {
 	public static void loginActionPerformed(JFrame loginFrame, String email, String password) {
         Connection conn = null;
