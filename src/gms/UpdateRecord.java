@@ -7,12 +7,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.mysql.cj.util.DnsSrv.SrvRecord;
-
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
+import util.ComboBoxModels;
 
 public class UpdateRecord extends JFrame {
 
@@ -23,6 +18,8 @@ public class UpdateRecord extends JFrame {
     private static JTextField textField_studentNum;
     private static JTextField textField_marks;
     private static JComboBox<String> comboBox_courseCode;
+    private static JComboBox<String> comboBox_yearLvl;
+    private static JComboBox<String> comboBox_sem;
     
     private static String studentNum;
     private static String studentMarks;
@@ -48,9 +45,10 @@ public class UpdateRecord extends JFrame {
      * Create the frame.
      */
     public UpdateRecord() {
+    	setTitle("Update Record");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 364);
+        setBounds(100, 100, 480, 380);
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 51));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -61,7 +59,7 @@ public class UpdateRecord extends JFrame {
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setForeground(new Color(255, 255, 102));
         lblNewLabel.setFont(new Font("Arial Narrow", Font.BOLD, 22));
-        lblNewLabel.setBounds(10, 27, 414, 31);
+        lblNewLabel.setBounds(129, 27, 245, 31);
         contentPane.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("Student Number:");
@@ -72,37 +70,37 @@ public class UpdateRecord extends JFrame {
 
         textField_studentNum = new JTextField(studentNum);
         textField_studentNum.setColumns(10);
-        textField_studentNum.setBounds(129, 103, 245, 20);
+        textField_studentNum.setBounds(129, 103, 280, 20);
         contentPane.add(textField_studentNum);
         
         textField_marks = new JTextField(studentMarks);
         textField_marks.setColumns(10);
-        textField_marks.setBounds(311, 155, 63, 22);
+        textField_marks.setBounds(333, 155, 76, 22);
         contentPane.add(textField_marks);
 
-        JLabel lblNewLabel_1_1 = new JLabel("Course Code");
+        JLabel lblNewLabel_1_1 = new JLabel("Course Code:");
         lblNewLabel_1_1.setForeground(Color.WHITE);
         lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblNewLabel_1_1.setBounds(129, 134, 168, 17);
+        lblNewLabel_1_1.setBounds(129, 134, 190, 17);
         contentPane.add(lblNewLabel_1_1);
 
         comboBox_courseCode = new JComboBox();
-        comboBox_courseCode.setBounds(129, 155, 168, 22);
+        comboBox_courseCode.setBounds(129, 155, 190, 22);
         contentPane.add(comboBox_courseCode);
 
         JLabel lblNewLabel_1_2 = new JLabel("Marks:");
         lblNewLabel_1_2.setForeground(Color.WHITE);
         lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblNewLabel_1_2.setBounds(311, 134, 63, 17);
+        lblNewLabel_1_2.setBounds(333, 134, 76, 17);
         contentPane.add(lblNewLabel_1_2);
 
         updateBtn = new JButton("Update");
         updateBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        updateBtn.setBounds(208, 207, 89, 31);
+        updateBtn.setBounds(230, 269, 89, 31);
         contentPane.add(updateBtn);
 
         // Load the image and create an ImageIcon
-        ImageIcon imageIcon = new ImageIcon("C:/Users/Jane Martinez Pili/eclipse-workspace/Grading_Management_System/src/img/torch.png");
+        ImageIcon imageIcon = new ImageIcon("C:/Users/Jane Martinez Pili/Grading-Management-System/src/img/torch.png");
 
         // Resize the image to fit the JLabel
         Image image = imageIcon.getImage().getScaledInstance(131, 180, Image.SCALE_SMOOTH);
@@ -111,14 +109,27 @@ public class UpdateRecord extends JFrame {
         // Create a JLabel to hold the image
         lblImage = new JLabel(scaledImageIcon);
         lblImage.setBackground(Color.BLACK);
-        lblImage.setBounds(0, 27, 124, 275);
+        lblImage.setBounds(0, 11, 124, 303);
         contentPane.add(lblImage);
-
-        JButton btnNewButton_1 = new JButton("Delete this record.");
-        btnNewButton_1.setForeground(new Color(204, 0, 0));
-        btnNewButton_1.setBackground(new Color(0, 0, 51));
-        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        btnNewButton_1.setBounds(34, 277, 151, 20);
-        contentPane.add(btnNewButton_1);
+        
+        JLabel lblNewLabel_1_1_1 = new JLabel("Year Level:");
+        lblNewLabel_1_1_1.setForeground(Color.WHITE);
+        lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblNewLabel_1_1_1.setBounds(129, 188, 140, 17);
+        contentPane.add(lblNewLabel_1_1_1);
+        
+        comboBox_yearLvl = new JComboBox<>(ComboBoxModels.yearLevelModel);
+        comboBox_yearLvl.setBounds(129, 209, 140, 22);
+        contentPane.add(comboBox_yearLvl);
+        
+        comboBox_sem = new JComboBox<>(ComboBoxModels.semesterModel);
+        comboBox_sem.setBounds(285, 209, 124, 22);
+        contentPane.add(comboBox_sem);
+        
+        JLabel lblNewLabel_1_1_1_1 = new JLabel("Semester:");
+        lblNewLabel_1_1_1_1.setForeground(Color.WHITE);
+        lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblNewLabel_1_1_1_1.setBounds(285, 188, 110, 17);
+        contentPane.add(lblNewLabel_1_1_1_1);
     }
 }
