@@ -3,15 +3,14 @@ package ui.panels;
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import database.LoginHandler;
-import util.ResourceLoader;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Admin_Login extends JFrame {
+import database.LoginHandler;
+import util.ResourceLoader;
+
+public class Login extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -26,7 +25,7 @@ public class Admin_Login extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Admin_Login frame = new Admin_Login();
+                    Login frame = new Login();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -38,7 +37,7 @@ public class Admin_Login extends JFrame {
     /**
      * Create the frame.
      */
-    public Admin_Login() {
+    public Login() {
     	setResizable(false);
         setAlwaysOnTop(true);
         setTitle("Admin Login");
@@ -88,7 +87,7 @@ public class Admin_Login extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		String email = textField_email.getText();
                 String password = textField_password.getText();
-                LoginHandler.loginActionPerformed(Admin_Login.this, email, password);
+                LoginHandler.loginActionPerformed(Login.this, email, password);
         	}
         });
         btn_Login.setBounds(200, 226, 89, 23);

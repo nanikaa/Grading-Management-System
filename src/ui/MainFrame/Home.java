@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 import database.RetrieveRecords;
 import ui.panels.UpdateRecord;
+import ui.panels.DeleteRecord;
 
 import java.awt.*;
 import java.sql.*;
@@ -52,6 +53,7 @@ public class Home extends JFrame {
     private void updateUIInUpdateRecord() {
         // Pass the selected data to the method in UpdateRecord
         UpdateRecord.updateFields(selectedRecordNumber, selectedStudentID, selectedMarks, selectedCourseID, selectedYearLvl, selectedSem);
+        DeleteRecord.updateFields(selectedRecordNumber, selectedStudentID, selectedMarks, selectedCourseID, selectedYearLvl, selectedSem);
     }
     
     public Home() {
@@ -108,6 +110,14 @@ public class Home extends JFrame {
         });
 
         JButton btn_delete = new JButton("Delete Record");
+        btn_delete.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                // Display the UpdateRecord JFrame
+                DeleteRecord deleteRecordFrame = new DeleteRecord();
+                deleteRecordFrame.setVisible(true);
+                dispose();
+            }
+        });
         btn_delete.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btn_delete.setBounds(613, 297, 158, 46);
         contentPane.add(btn_delete);

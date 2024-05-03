@@ -1,8 +1,7 @@
 package database;
 
 import java.sql.*;
-
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class UpdateData {
 	public static void updateData(int recordNum, String studentNum, String studentMarks, String studentCourseCode, String yearLevel, String semester) {
