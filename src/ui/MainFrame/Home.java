@@ -21,7 +21,7 @@ public class Home extends JFrame {
     private JTable table;
 
     // Variables to store selected row data
-    //private String selectedRecordNumber;
+    private int selectedRecordNumber;
     private float selectedMarks;
     private String selectedCourseID;
     private String selectedStudentID;
@@ -51,7 +51,7 @@ public class Home extends JFrame {
  // Method to update the UI components in UpdateRecord
     private void updateUIInUpdateRecord() {
         // Pass the selected data to the method in UpdateRecord
-        UpdateRecord.updateFields(selectedStudentID, selectedMarks, selectedCourseID, selectedYearLvl, selectedSem);
+        UpdateRecord.updateFields(selectedRecordNumber, selectedStudentID, selectedMarks, selectedCourseID, selectedYearLvl, selectedSem);
     }
     
     public Home() {
@@ -93,8 +93,7 @@ public class Home extends JFrame {
                     if (selectedRow != -1) { // If a row is selected
                         // Retrieve data from selected row
                     	
-                        /*selectedRecordNumber = table.getValueAt(selectedRow, 0).toString();
-                        */
+                    	selectedRecordNumber = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
                         selectedMarks = Float.parseFloat(table.getValueAt(selectedRow, 1).toString());
                         selectedCourseID = table.getValueAt(selectedRow, 2).toString();
                         selectedStudentID = table.getValueAt(selectedRow, 3).toString();
