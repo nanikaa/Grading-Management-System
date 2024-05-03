@@ -1,14 +1,13 @@
-package gms;
+package database;
 
 import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
-import dao.DatabaseConnector;
+import ui.MainFrame.Home;
 
 public class LoginHandler {
 	public static void loginActionPerformed(JFrame loginFrame, String email, String password) {

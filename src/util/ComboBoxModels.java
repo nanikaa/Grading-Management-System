@@ -1,8 +1,9 @@
 package util;
 
-import dao.DatabaseConnector;
-
 import javax.swing.DefaultComboBoxModel;
+
+import database.DatabaseConnector;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
