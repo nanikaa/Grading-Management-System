@@ -1,22 +1,15 @@
-package gms;
+package ui.panels;
+
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Color;
 
-import javax.swing.SwingConstants;
+import database.LoginHandler;
+import util.ResourceLoader;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
 
 public class Admin_Login extends JFrame {
 
@@ -57,15 +50,12 @@ public class Admin_Login extends JFrame {
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
-
-        // Load the image and create an ImageIcon
-        ImageIcon imageIcon = new ImageIcon("C:/Users/Jane Martinez Pili/eclipse-workspace/Grading_Management_System/src/img/torch.png");
-
-        // Resize the image to fit the JLabel
+        
+        String imagePath = "resources/images/torch.png";
+        ImageIcon imageIcon = ResourceLoader.loadImage(imagePath);
         Image image = imageIcon.getImage().getScaledInstance(131, 180, Image.SCALE_SMOOTH);
         ImageIcon scaledImageIcon = new ImageIcon(image);
 
-        // Create a JLabel to hold the image
         lblImage = new JLabel(scaledImageIcon);
         lblImage.setBackground(Color.BLACK);
         lblImage.setBounds(10, 30, 99, 280);
@@ -95,18 +85,11 @@ public class Admin_Login extends JFrame {
 
         JButton btn_Login = new JButton("Login");
         btn_Login.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        try {
-                            Home frame = new Home(); // Create an instance of Home
-                            frame.setVisible(true);  // Make Home visible
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                });
-            }
+        	public void actionPerformed(ActionEvent e) {
+        		String email = textField_email.getText();
+                String password = textField_password.getText();
+                LoginHandler.loginActionPerformed(Admin_Login.this, email, password);
+        	}
         });
         btn_Login.setBounds(200, 226, 89, 23);
         contentPane.add(btn_Login);
