@@ -119,7 +119,7 @@ public class Home extends JFrame {
             }
         });
         btn_delete.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_delete.setBounds(613, 297, 158, 46);
+        btn_delete.setBounds(613, 226, 158, 46);
         contentPane.add(btn_delete);
 
         JButton btn_update = new JButton("Update Record");
@@ -133,7 +133,7 @@ public class Home extends JFrame {
         });
         
         btn_update.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_update.setBounds(613, 240, 158, 46);
+        btn_update.setBounds(613, 169, 158, 46);
         contentPane.add(btn_update);
 
         JButton btn_add = new JButton("New Record");
@@ -143,7 +143,7 @@ public class Home extends JFrame {
             }
         });
         btn_add.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_add.setBounds(613, 183, 158, 46);
+        btn_add.setBounds(613, 112, 158, 46);
         contentPane.add(btn_add);
 
         JLabel lblNewLabel = new JLabel("GRADING MANAGEMENT SYSTEM");
@@ -152,5 +152,10 @@ public class Home extends JFrame {
         lblNewLabel.setForeground(new Color(255, 255, 102));
         lblNewLabel.setBounds(40, 37, 541, 51);
         contentPane.add(lblNewLabel);
+        
+        JButton btn_add_1 = new JButton("Enroll New User");
+        btn_add_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn_add_1.setBounds(613, 326, 158, 46);
+        contentPane.add(btn_add_1);
     }
 }
