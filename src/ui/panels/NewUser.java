@@ -57,7 +57,7 @@ public class NewUser {
 		frmEnrollNewUser = new JFrame();
 		frmEnrollNewUser.setTitle("Enroll New User");
 		frmEnrollNewUser.getContentPane().setBackground(new Color(0, 0, 51));
-		frmEnrollNewUser.setBounds(100, 100, 980, 591);
+		frmEnrollNewUser.setBounds(100, 100, 440, 490);
 		frmEnrollNewUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEnrollNewUser.getContentPane().setLayout(null);
 		
@@ -65,13 +65,13 @@ public class NewUser {
 		lblNewLabel.setForeground(new Color(255, 255, 102));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Arial Narrow", Font.BOLD, 24));
-		lblNewLabel.setBounds(10, 25, 444, 39);
+		lblNewLabel.setBounds(10, 25, 387, 39);
 		frmEnrollNewUser.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Email:");
         lblNewLabel_2.setForeground(Color.WHITE);
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblNewLabel_2.setBounds(574, 309, 168, 17);
+        lblNewLabel_2.setBounds(134, 201, 168, 17);
         frmEnrollNewUser.getContentPane().add(lblNewLabel_2);
 
         // Load the image and create an ImageIcon
@@ -83,38 +83,38 @@ public class NewUser {
         // Create a JLabel to hold the image
         JLabel lblImage = new JLabel(scaledImageIcon);
         lblImage.setBackground(Color.BLACK);
-        lblImage.setBounds(0, 11, 131, 340);
+        lblImage.setBounds(0, 11, 131, 429);
         frmEnrollNewUser.getContentPane().add(lblImage);
         
         textField = new JTextField();
-        textField.setBounds(574, 328, 225, 20);
+        textField.setBounds(134, 220, 225, 20);
         frmEnrollNewUser.getContentPane().add(textField);
         textField.setColumns(10);
         
         JLabel lblNewLabel_3 = new JLabel("Password:");
         lblNewLabel_3.setForeground(Color.WHITE);
         lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblNewLabel_3.setBounds(134, 295, 168, 17);
+        lblNewLabel_3.setBounds(134, 251, 168, 17);
         frmEnrollNewUser.getContentPane().add(lblNewLabel_3);
         
         textField_1 = new JTextField();
         textField_1.setColumns(10);
-        textField_1.setBounds(134, 317, 225, 20);
+        textField_1.setBounds(134, 273, 225, 20);
         frmEnrollNewUser.getContentPane().add(textField_1);
         
         JLabel lblNewLabel_4 = new JLabel("Role:");
         lblNewLabel_4.setForeground(Color.WHITE);
         lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblNewLabel_4.setBounds(134, 348, 168, 17);
+        lblNewLabel_4.setBounds(134, 304, 168, 17);
         frmEnrollNewUser.getContentPane().add(lblNewLabel_4);
         
         JComboBox comboBox = new JComboBox<>(ComboBoxModels.userRole);
-        comboBox.setBounds(134, 369, 225, 22);
+        comboBox.setBounds(134, 325, 225, 22);
         frmEnrollNewUser.getContentPane().add(comboBox);
         
         JButton btnNewButton = new JButton("Enroll");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        btnNewButton.setBounds(194, 412, 89, 30);
+        btnNewButton.setBounds(195, 376, 89, 30);
         frmEnrollNewUser.getContentPane().add(btnNewButton);
         
         JLabel lblNewLabel_6 = new JLabel("First Name:");
