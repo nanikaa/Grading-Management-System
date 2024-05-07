@@ -1,6 +1,8 @@
 package ui.panels;
 
 import database.UpdateData;
+import ui.MainFrame.Home;
+
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
@@ -9,6 +11,8 @@ import util.ComboBoxModels;
 import util.ResourceLoader;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class UpdateRecord extends JFrame {
@@ -47,7 +51,7 @@ public class UpdateRecord extends JFrame {
     public UpdateRecord() {
     	setTitle("Update Record");
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 480, 380);
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 51));
@@ -145,5 +149,14 @@ public class UpdateRecord extends JFrame {
         lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 14));
         lblNewLabel_6.setBounds(285, 188, 110, 17);
         contentPane.add(lblNewLabel_6);
+        
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                	Home homeFrame = new Home();
+                    homeFrame.setExtendedState(JFrame.NORMAL);
+                    homeFrame.setVisible(true);
+            }
+        });
     }
 }

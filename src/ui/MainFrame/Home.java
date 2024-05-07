@@ -59,7 +59,6 @@ public class Home extends JFrame {
         setAlwaysOnTop(true);
         setResizable(false);
         setTitle("Admin Home");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 832, 440);
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 51));
@@ -114,7 +113,8 @@ public class Home extends JFrame {
                 // Display the DeleteRecord JFrame
                 DeleteRecord deleteRecordFrame = new DeleteRecord();
                 deleteRecordFrame.setVisible(true);
-                dispose();
+                // Minimize the current JFrame
+                setState(JFrame.ICONIFIED);
             }
         });
         btn_delete.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -127,7 +127,8 @@ public class Home extends JFrame {
                 // Display the UpdateRecord JFrame
                 UpdateRecord updateRecordFrame = new UpdateRecord();
                 updateRecordFrame.setVisible(true);
-                dispose();
+                // Minimize the current JFrame
+                setState(JFrame.ICONIFIED);
             }
         });
         
@@ -141,7 +142,8 @@ public class Home extends JFrame {
             	// Display the AddRecord JFrame
                 AddRecord addRecordFrame = new AddRecord();
                 addRecordFrame.setVisible(true);
-                dispose();
+                // Minimize the current JFrame
+                setState(JFrame.ICONIFIED);
             }
         });
         btn_add.setFont(new Font("Tahoma", Font.PLAIN, 14));

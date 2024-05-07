@@ -1,11 +1,7 @@
 package ui.panels;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -14,6 +10,7 @@ import util.ComboBoxModels;
 import util.ResourceLoader;
 
 import database.CreateData;
+import ui.MainFrame.Home;
 
 public class AddRecord extends JFrame {
 
@@ -36,6 +33,8 @@ public class AddRecord extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+    
+    
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -53,9 +52,11 @@ public class AddRecord extends JFrame {
 	 * Create the frame.
 	 */
 	public AddRecord() {
+		setAlwaysOnTop(true);
+		
 		setTitle("Add New Record");
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 480, 380);
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 51));
@@ -97,12 +98,6 @@ public class AddRecord extends JFrame {
                 studentCourseCode = (String) comboBox_courseCode.getSelectedItem();
                 yearLevel = (String) comboBox_yearLvl.getSelectedItem();
                 semester = (String) comboBox_sem.getSelectedItem();
-                
-                System.out.println("New Student ID: " + studentNum);
-                System.out.println("New Marks: " + studentMarks);
-                System.out.println("New Course ID: " + studentCourseCode);
-                System.out.println("New Year Level: " + yearLevel);
-                System.out.println("New Semester: " + semester);
                 
         		CreateData.insertDataIntoDatabase(studentNum, studentMarks, studentCourseCode, yearLevel, semester);
         	}
@@ -156,6 +151,15 @@ public class AddRecord extends JFrame {
         comboBox_sem = new JComboBox<>(ComboBoxModels.semesterModel);
         comboBox_sem.setBounds(285, 209, 124, 22);
         contentPane.add(comboBox_sem);
+        
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                	Home homeFrame = new Home();
+                    homeFrame.setExtendedState(JFrame.NORMAL);
+                    homeFrame.setVisible(true);
+            }
+        });
 	}
 
 }

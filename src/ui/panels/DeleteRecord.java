@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import database.DeleteData;
+import ui.MainFrame.Home;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -15,6 +17,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class DeleteRecord extends JDialog {
@@ -58,6 +62,8 @@ public class DeleteRecord extends JDialog {
 	 * Create the dialog.
 	 */
 	public DeleteRecord() {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setTitle("Delete Record");
 		setBounds(100, 100, 450, 450);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(0, 0, 51));
@@ -170,5 +176,14 @@ public class DeleteRecord extends JDialog {
 		lbl_marks.setFont(new Font("Consolas", Font.PLAIN, 12));
 		lbl_marks.setBounds(205, 205, 185, 14);
 		contentPanel.add(lbl_marks);
+		
+		this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                	Home homeFrame = new Home();
+                    homeFrame.setExtendedState(JFrame.NORMAL);
+                    homeFrame.setVisible(true);
+            }
+        });
 	}
 }
