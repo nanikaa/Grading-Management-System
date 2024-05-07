@@ -2,13 +2,12 @@ package ui.MainFrame;
 
 import java.awt.EventQueue;
 
+import java.awt.*;
 import javax.swing.*;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
+import database.RetrieveStudentMarks;
 
 public class StudentView extends JFrame {
 
@@ -16,8 +15,10 @@ public class StudentView extends JFrame {
 	private JPanel contentPane;
 	private JTable firstYear1;
 	private JTable firstYear2;
-	private JTable table;
-	private JTable table_1;
+	
+    private String studentID;
+    private String studentYearLvl;
+    private String studentSem;
 
 	/**
 	 * Launch the application.
@@ -120,6 +121,9 @@ public class StudentView extends JFrame {
 		firstYear1 = new JTable();
 		firstYear1.setBounds(41, 168, 299, 194);
 		contentPane.add(firstYear1);
+		
+		DefaultTableModel tableModel = RetrieveStudentMarks.retrieveStudentMarksPerSem(studentYearLvl, studentSem, studentID);
+	    firstYear1.setModel(tableModel); 
 		
 		firstYear2 = new JTable();
 		firstYear2.setBounds(382, 168, 299, 194);
