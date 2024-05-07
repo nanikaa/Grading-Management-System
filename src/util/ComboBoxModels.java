@@ -13,6 +13,7 @@ public class ComboBoxModels {
     public static DefaultComboBoxModel<String> yearLevelModel;
     public static DefaultComboBoxModel<String> semesterModel;
     public static DefaultComboBoxModel<String> courseCodeModel;
+    public static DefaultComboBoxModel<String> tableViews;
     public static DefaultComboBoxModel<String> userRole;
 
     static {

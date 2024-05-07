@@ -7,8 +7,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import database.RetrieveRecords;
-import ui.panels.UpdateRecord;
-import ui.panels.DeleteRecord;
+import ui.panels.*;
 
 import java.awt.*;
 import java.sql.*;
@@ -112,7 +111,7 @@ public class Home extends JFrame {
         JButton btn_delete = new JButton("Delete Record");
         btn_delete.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-                // Display the UpdateRecord JFrame
+                // Display the DeleteRecord JFrame
                 DeleteRecord deleteRecordFrame = new DeleteRecord();
                 deleteRecordFrame.setVisible(true);
                 dispose();
@@ -139,7 +138,10 @@ public class Home extends JFrame {
         JButton btn_add = new JButton("New Record");
         btn_add.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // insert code here for Add New Record
+            	// Display the AddRecord JFrame
+                AddRecord addRecordFrame = new AddRecord();
+                addRecordFrame.setVisible(true);
+                dispose();
             }
         });
         btn_add.setFont(new Font("Tahoma", Font.PLAIN, 14));

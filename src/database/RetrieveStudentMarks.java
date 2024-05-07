@@ -14,7 +14,11 @@ public class RetrieveStudentMarks {
             // Get connection
             connection = DatabaseConnector.getConnection();
             // Prepare SQL statement
-            String sql = "SELECT * FROM student_record WHERE studentRecord_studentID = ? & studentRecord_yearLvl = ? & studentRecord_semester = ? ";
+            String sql = "SELECT student_record.studentRecord_courseID, course.course_name, course.course_units, student_record.studentRecord_marks " 
+                    + "FROM student_record "
+                    + "JOIN course ON student_record.studentRecord_courseID = course.id_course "
+                    + "WHERE student_record.studentRecord_studentID = ? AND student_record.studentRecord_yearLvl = ? AND student_record.studentRecord_semester = ? ";
+            
             statement = connection.prepareStatement(sql);
             statement.setString(1, studentNumber);
             statement.setString(2, year);
@@ -25,7 +29,7 @@ public class RetrieveStudentMarks {
             // Retrieve metadata
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
-
+            
             // Add columns to table model
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 // Use custom column names if available, otherwise use original column labels
