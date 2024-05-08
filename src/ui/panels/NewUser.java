@@ -1,31 +1,34 @@
 package ui.panels;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import java.awt.*;
+import javax.swing.*;
 
 import util.ComboBoxModels;
 import util.ResourceLoader;
-
-import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+import database.CreateUser;
+import ui.MainFrame.Home;
 
 public class NewUser {
 
 	private JFrame frmEnrollNewUser;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_4;
-	private JTextField textField_3;
+	private JTextField textField_email;
+	private JPasswordField passwordField_pass;
+	private JTextField textField_firstName;
+	private JTextField textField_lastName;
+	private JTextField textField_studentNumber;
+	private JComboBox<String> comboBox_role;
+	
+	private String firstName;
+	private String lastName;
+	private String studentNumber;
+	private String email;
+	private String password;
+	private String role;
+	
 
 	/**
 	 * Launch the application.
@@ -57,7 +60,7 @@ public class NewUser {
 		frmEnrollNewUser = new JFrame();
 		frmEnrollNewUser.setTitle("Enroll New User");
 		frmEnrollNewUser.getContentPane().setBackground(new Color(0, 0, 51));
-		frmEnrollNewUser.setBounds(100, 100, 440, 490);
+		frmEnrollNewUser.setBounds(100, 100, 440, 550);
 		frmEnrollNewUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEnrollNewUser.getContentPane().setLayout(null);
 		
@@ -86,35 +89,47 @@ public class NewUser {
         lblImage.setBounds(0, 11, 131, 429);
         frmEnrollNewUser.getContentPane().add(lblImage);
         
-        textField = new JTextField();
-        textField.setBounds(134, 220, 225, 20);
-        frmEnrollNewUser.getContentPane().add(textField);
-        textField.setColumns(10);
+        textField_email = new JTextField();
+        textField_email.setBounds(134, 220, 225, 20);
+        frmEnrollNewUser.getContentPane().add(textField_email);
+        textField_email.setColumns(10);
         
         JLabel lblNewLabel_3 = new JLabel("Password:");
         lblNewLabel_3.setForeground(Color.WHITE);
         lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblNewLabel_3.setBounds(134, 251, 168, 17);
+        lblNewLabel_3.setBounds(134, 301, 168, 17);
         frmEnrollNewUser.getContentPane().add(lblNewLabel_3);
         
-        textField_1 = new JTextField();
-        textField_1.setColumns(10);
-        textField_1.setBounds(134, 273, 225, 20);
-        frmEnrollNewUser.getContentPane().add(textField_1);
+        passwordField_pass = new JPasswordField();
+        passwordField_pass.setColumns(10);
+        passwordField_pass.setBounds(134, 323, 225, 20);
+        frmEnrollNewUser.getContentPane().add(passwordField_pass);
         
         JLabel lblNewLabel_4 = new JLabel("Role:");
         lblNewLabel_4.setForeground(Color.WHITE);
         lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblNewLabel_4.setBounds(134, 304, 168, 17);
+        lblNewLabel_4.setBounds(134, 354, 168, 17);
         frmEnrollNewUser.getContentPane().add(lblNewLabel_4);
         
-        JComboBox comboBox = new JComboBox<>(ComboBoxModels.userRole);
-        comboBox.setBounds(134, 325, 225, 22);
-        frmEnrollNewUser.getContentPane().add(comboBox);
+        comboBox_role = new JComboBox<>(ComboBoxModels.userRole);
+        comboBox_role.setBounds(134, 375, 225, 22);
+        frmEnrollNewUser.getContentPane().add(comboBox_role);
         
         JButton btnNewButton = new JButton("Enroll");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		firstName = textField_firstName.getText();
+        		lastName = textField_lastName.getText();
+        		studentNumber = textField_studentNumber.getText();
+        		email = textField_email.getText();
+        		password = new String(passwordField_pass.getPassword());
+                role = (String) comboBox_role.getSelectedItem();
+                
+        		CreateUser.createUser(firstName, lastName, studentNumber, email, password, role);
+        	}
+        });
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        btnNewButton.setBounds(195, 376, 89, 30);
+        btnNewButton.setBounds(200, 432, 89, 30);
         frmEnrollNewUser.getContentPane().add(btnNewButton);
         
         JLabel lblNewLabel_6 = new JLabel("First Name:");
@@ -123,10 +138,10 @@ public class NewUser {
         lblNewLabel_6.setBounds(134, 98, 168, 17);
         frmEnrollNewUser.getContentPane().add(lblNewLabel_6);
         
-        textField_4 = new JTextField();
-        textField_4.setColumns(10);
-        textField_4.setBounds(134, 120, 225, 20);
-        frmEnrollNewUser.getContentPane().add(textField_4);
+        textField_firstName = new JTextField();
+        textField_firstName.setColumns(10);
+        textField_firstName.setBounds(134, 120, 225, 20);
+        frmEnrollNewUser.getContentPane().add(textField_firstName);
         
         JLabel lblNewLabel_5 = new JLabel("Last Name:");
         lblNewLabel_5.setForeground(Color.WHITE);
@@ -134,9 +149,33 @@ public class NewUser {
         lblNewLabel_5.setBounds(134, 151, 168, 17);
         frmEnrollNewUser.getContentPane().add(lblNewLabel_5);
         
-        textField_3 = new JTextField();
-        textField_3.setColumns(10);
-        textField_3.setBounds(134, 170, 225, 20);
-        frmEnrollNewUser.getContentPane().add(textField_3);
+        textField_lastName = new JTextField();
+        textField_lastName.setColumns(10);
+        textField_lastName.setBounds(134, 170, 225, 20);
+        frmEnrollNewUser.getContentPane().add(textField_lastName);
+        
+        textField_studentNumber = new JTextField();
+        textField_studentNumber.setColumns(10);
+        textField_studentNumber.setBounds(134, 270, 225, 20);
+        frmEnrollNewUser.getContentPane().add(textField_studentNumber);
+        
+        JLabel lblNewLabel_2_1 = new JLabel("Student Number:");
+        lblNewLabel_2_1.setForeground(Color.WHITE);
+        lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblNewLabel_2_1.setBounds(134, 250, 168, 17);
+        frmEnrollNewUser.getContentPane().add(lblNewLabel_2_1);
+        
+        frmEnrollNewUser.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Home homeFrame = new Home();
+                homeFrame.setExtendedState(JFrame.NORMAL);
+                homeFrame.setVisible(true);
+            }
+        });
 	}
+	
+	public JFrame getFrame() {
+        return frmEnrollNewUser;
+    }
 }

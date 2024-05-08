@@ -100,6 +100,15 @@ public class DeleteRecord extends JDialog {
 		}
 		{
 			JButton cancelButton = new JButton("Cancel");
+			cancelButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Home homeFrame = new Home();
+                    homeFrame.setExtendedState(JFrame.NORMAL);
+                    homeFrame.setVisible(true);
+                    
+                    dispose();
+				}
+			});
 			cancelButton.setBounds(308, 362, 77, 23);
 			contentPanel.add(cancelButton);
 			cancelButton.setActionCommand("Cancel");

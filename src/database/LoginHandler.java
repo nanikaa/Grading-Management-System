@@ -7,13 +7,11 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 import model.user.User;
-import model.user.Student;
 import ui.MainFrame.Home;
 import ui.MainFrame.StudentView;
 
 public class LoginHandler {
 	private static User newUser;
-	private static Student newStudent;
 	
 	public static void loginActionPerformed(JFrame loginFrame, String email, String password) {
         Connection conn = null;
@@ -21,7 +19,7 @@ public class LoginHandler {
         ResultSet rs = null;
 
         try {
-            conn = DatabaseConnector.getConnection(); // Assuming DatabaseConnector is correctly set up
+            conn = DatabaseConnector.getConnection();
             String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, email);
@@ -58,10 +56,7 @@ public class LoginHandler {
                         String studentLName = rs.getString("student_lastName");
 
                         // Create a Student object
-                        newStudent = new Student(studentID, studentFName, studentLName, userEmail);
-                        System.out.println("Email: " + newStudent.getEmail());
-                        System.out.println("First Name: " + newStudent.getFirstName());
-                        System.out.println("Student ID: " + newStudent.getStudentID());
+                        StudentDataHandler.handleStudentData(studentID, studentFName, studentLName, userEmail);
 
                         // Open StudentView frame
                         StudentView studentViewFrame = new StudentView();
@@ -93,8 +88,4 @@ public class LoginHandler {
 	public static User getLoggedInUser() {
         return newUser;
     }
-	
-	public static Student getStudentData() {
-		return newStudent;
-	}
 }

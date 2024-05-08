@@ -10,7 +10,6 @@ import util.ComboBoxModels;
 import util.ResourceLoader;
 
 import database.CreateData;
-import ui.MainFrame.Home;
 
 public class AddRecord extends JFrame {
 
@@ -152,14 +151,14 @@ public class AddRecord extends JFrame {
         comboBox_sem.setBounds(285, 209, 124, 22);
         contentPane.add(comboBox_sem);
         
-        this.addWindowListener(new WindowAdapter() {
+        /*this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 	Home homeFrame = new Home();
                     homeFrame.setExtendedState(JFrame.NORMAL);
                     homeFrame.setVisible(true);
             }
-        });
+        });*/
 	}
 
 }

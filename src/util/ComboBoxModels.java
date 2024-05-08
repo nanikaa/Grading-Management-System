@@ -19,7 +19,7 @@ public class ComboBoxModels {
     static {
         yearLevelModel = new DefaultComboBoxModel<>(new String[]{"1st Year", "2nd Year", "3rd Year", "4th Year", "5th Year", "6th Year", "7th Year", "Summer Midyear"});
         semesterModel = new DefaultComboBoxModel<>(new String[]{"1st Semester", "2nd Semester"});
-        userRole = new DefaultComboBoxModel<>(new String[]{"Admin", "Student"});
+        userRole = new DefaultComboBoxModel<>(new String[]{"Student", "Admin"});
         courseCodeModel = new DefaultComboBoxModel<>();
         loadCourseCodesFromDatabase();
     }

@@ -24,7 +24,7 @@ public class StudentView extends JFrame {
     private String studentSem;
     
     
-    static Student studentData = LoginHandler.getStudentData(); 
+    static Student studentData = StudentDataHandler.getStudentData();
 
 	/**
 	 * Launch the application.
@@ -53,7 +53,7 @@ public class StudentView extends JFrame {
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Student");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 760, 650);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 51));
@@ -164,7 +164,7 @@ public class StudentView extends JFrame {
         columnModel2.getColumn(2).setPreferredWidth(5);
         columnModel2.getColumn(3).setPreferredWidth(10);
 	    
-	    JComboBox comboBox = new JComboBox();
+	    JComboBox<String> comboBox = new JComboBox<String>();
 	    comboBox.setBounds(382, 141, 319, 22);
 	    contentPane.add(comboBox);
 	}

@@ -59,7 +59,7 @@ public class Home extends JFrame {
         setAlwaysOnTop(true);
         setResizable(false);
         setTitle("Admin Home");
-        setBounds(100, 100, 832, 440);
+        setBounds(100, 100, 832, 460);
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 51));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,7 +69,7 @@ public class Home extends JFrame {
         // Create the table to display the records
         table = new JTable();
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(40, 112, 541, 260);
+        scrollPane.setBounds(40, 99, 541, 273);
         contentPane.add(scrollPane);
 
         // Connect to the database and retrieve the latest 100 records
@@ -113,12 +113,11 @@ public class Home extends JFrame {
                 // Display the DeleteRecord JFrame
                 DeleteRecord deleteRecordFrame = new DeleteRecord();
                 deleteRecordFrame.setVisible(true);
-                // Minimize the current JFrame
-                setState(JFrame.ICONIFIED);
+                dispose();
             }
         });
         btn_delete.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_delete.setBounds(613, 226, 158, 46);
+        btn_delete.setBounds(613, 269, 158, 46);
         contentPane.add(btn_delete);
 
         JButton btn_update = new JButton("Update Record");
@@ -127,13 +126,12 @@ public class Home extends JFrame {
                 // Display the UpdateRecord JFrame
                 UpdateRecord updateRecordFrame = new UpdateRecord();
                 updateRecordFrame.setVisible(true);
-                // Minimize the current JFrame
-                setState(JFrame.ICONIFIED);
+                dispose();
             }
         });
         
         btn_update.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_update.setBounds(613, 169, 158, 46);
+        btn_update.setBounds(613, 212, 158, 46);
         contentPane.add(btn_update);
 
         JButton btn_add = new JButton("New Record");
@@ -142,12 +140,10 @@ public class Home extends JFrame {
             	// Display the AddRecord JFrame
                 AddRecord addRecordFrame = new AddRecord();
                 addRecordFrame.setVisible(true);
-                // Minimize the current JFrame
-                setState(JFrame.ICONIFIED);
             }
         });
         btn_add.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_add.setBounds(613, 112, 158, 46);
+        btn_add.setBounds(613, 155, 158, 46);
         contentPane.add(btn_add);
 
         JLabel lblNewLabel = new JLabel("GRADING MANAGEMENT SYSTEM");
@@ -158,8 +154,26 @@ public class Home extends JFrame {
         contentPane.add(lblNewLabel);
         
         JButton btn_add_1 = new JButton("Enroll New User");
+        btn_add_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		NewUser newUserPanel = new NewUser();
+                newUserPanel.getFrame().setVisible(true);
+                dispose();
+        	}
+        });
         btn_add_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btn_add_1.setBounds(613, 326, 158, 46);
         contentPane.add(btn_add_1);
+        
+        JButton btn_search = new JButton("Search Student");
+        btn_search.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		SearchStudent searchFrame = new SearchStudent();
+        		searchFrame.setVisible(true);
+        	}
+        });
+        btn_search.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn_search.setBounds(613, 98, 158, 46);
+        contentPane.add(btn_search);
     }
 }
