@@ -11,7 +11,7 @@ public class RetrieveRecords {
         ResultSet resultSet = statement.executeQuery();
 
         // Define your custom column names
-        String[] customColumnNames = {"Record Num", "Marks", "Course ID", "Student ID", "Year Level", "Semester"/* Add more custom names as needed */};
+        String[] customColumnNames = {"Record Num", "Student ID", "Course ID", "Marks", "Year Level", "Semester"/* Add more custom names as needed */};
 
         // Populate the table model with data
         DefaultTableModel tableModel = new DefaultTableModel();

@@ -51,7 +51,6 @@ public class AddRecord extends JFrame {
 	 * Create the frame.
 	 */
 	public AddRecord() {
-		setAlwaysOnTop(true);
 		
 		setTitle("Add New Record");
         setResizable(false);

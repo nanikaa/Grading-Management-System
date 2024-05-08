@@ -7,7 +7,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import database.RetrieveRecords;
+import database.SearchRecord;
 import ui.panels.*;
+import util.ResourceLoader;
 
 import java.awt.*;
 import java.sql.*;
@@ -19,6 +21,7 @@ public class Home extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTable table;
+    private JLabel lblImage;
 
     // Variables to store selected row data
     private int selectedRecordNumber;
@@ -27,6 +30,7 @@ public class Home extends JFrame {
     private String selectedStudentID;
     private String selectedYearLvl;
     private String selectedSem;
+    private JTextField textField_search;
 
     /**
      * Launch the application.
@@ -56,10 +60,9 @@ public class Home extends JFrame {
     }
     
     public Home() {
-        setAlwaysOnTop(true);
         setResizable(false);
         setTitle("Admin Home");
-        setBounds(100, 100, 832, 460);
+        setBounds(100, 100, 832, 510);
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 51));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,7 +72,7 @@ public class Home extends JFrame {
         // Create the table to display the records
         table = new JTable();
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(40, 99, 541, 273);
+        scrollPane.setBounds(216, 175, 553, 238);
         contentPane.add(scrollPane);
 
         // Connect to the database and retrieve the latest 100 records
@@ -117,7 +120,7 @@ public class Home extends JFrame {
             }
         });
         btn_delete.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_delete.setBounds(613, 269, 158, 46);
+        btn_delete.setBounds(42, 310, 130, 46);
         contentPane.add(btn_delete);
 
         JButton btn_update = new JButton("Update Record");
@@ -131,7 +134,7 @@ public class Home extends JFrame {
         });
         
         btn_update.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_update.setBounds(613, 212, 158, 46);
+        btn_update.setBounds(42, 253, 130, 46);
         contentPane.add(btn_update);
 
         JButton btn_add = new JButton("New Record");
@@ -143,14 +146,14 @@ public class Home extends JFrame {
             }
         });
         btn_add.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_add.setBounds(613, 155, 158, 46);
+        btn_add.setBounds(42, 196, 130, 46);
         contentPane.add(btn_add);
 
         JLabel lblNewLabel = new JLabel("GRADING MANAGEMENT SYSTEM");
-        lblNewLabel.setFont(new Font("Arial Narrow", Font.BOLD, 24));
+        lblNewLabel.setFont(new Font("Arial Narrow", Font.BOLD, 28));
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setForeground(new Color(255, 255, 102));
-        lblNewLabel.setBounds(40, 37, 541, 51);
+        lblNewLabel.setBounds(216, 35, 553, 51);
         contentPane.add(lblNewLabel);
         
         JButton btn_add_1 = new JButton("Enroll New User");
@@ -162,10 +165,10 @@ public class Home extends JFrame {
         	}
         });
         btn_add_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_add_1.setBounds(613, 326, 158, 46);
+        btn_add_1.setBounds(42, 367, 130, 46);
         contentPane.add(btn_add_1);
         
-        JButton btn_search = new JButton("Search Student");
+        JButton btn_search = new JButton("View Student");
         btn_search.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		SearchStudent searchFrame = new SearchStudent();
@@ -173,7 +176,37 @@ public class Home extends JFrame {
         	}
         });
         btn_search.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_search.setBounds(613, 98, 158, 46);
+        btn_search.setBounds(42, 139, 130, 46);
         contentPane.add(btn_search);
+        
+        textField_search = new JTextField();
+        textField_search.setBounds(492, 139, 178, 25);
+        contentPane.add(textField_search);
+        textField_search.setColumns(10);
+        
+        JButton btnSearch = new JButton("Search");
+        btnSearch.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String searchValue = textField_search.getText();
+        		DefaultTableModel searchTableModel = SearchRecord.searchRecord(searchValue);
+
+                // Set the obtained table model to your JTable
+                table.setModel(searchTableModel);
+        	}
+        });
+        btnSearch.setBounds(680, 139, 89, 25);
+        contentPane.add(btnSearch);
+        
+     // Load the image and create an ImageIcon
+        String imagePath = "resources/images/circuits.png";
+        ImageIcon imageIcon = ResourceLoader.loadImage(imagePath);
+        Image image = imageIcon.getImage().getScaledInstance(65, 65, Image.SCALE_SMOOTH);
+        ImageIcon scaledImageIcon = new ImageIcon(image);
+
+        // Create a JLabel to hold the image
+        lblImage = new JLabel(scaledImageIcon);
+        lblImage.setBackground(Color.BLACK);
+        lblImage.setBounds(75, 35, 65, 65);
+        contentPane.add(lblImage);
     }
 }
