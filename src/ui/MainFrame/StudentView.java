@@ -1,7 +1,8 @@
 package ui.MainFrame;
 
 import java.awt.EventQueue;
-
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,13 +10,14 @@ import javax.swing.table.*;
 
 import database.*;
 import model.user.*;
+import util.ComboBoxModels;
 
 public class StudentView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable firstYear1;
-	private JTable firstYear2;
+	private JTable firstSem;
+	private JTable secondSem;
 	
     private String studentID;
     private String studentFName;
@@ -23,8 +25,8 @@ public class StudentView extends JFrame {
     private String studentYearLvl;
     private String studentSem;
     
-    
     static Student studentData = StudentDataHandler.getStudentData();
+    private JLabel lbl_YearLvl;
 
 	/**
 	 * Launch the application.
@@ -54,7 +56,7 @@ public class StudentView extends JFrame {
 		setAlwaysOnTop(true);
 		setTitle("Student");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 760, 650);
+		setBounds(100, 100, 760, 680);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 51));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -86,11 +88,18 @@ public class StudentView extends JFrame {
 		lbl_Name.setBounds(196, 69, 185, 14);
 		contentPane.add(lbl_Name);
 		
-		JLabel lblNewLabel_3 = new JLabel("1st Year - 1st Semester");
+		lbl_YearLvl = new JLabel("");
+		lbl_YearLvl.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_YearLvl.setForeground(new Color(245, 255, 250));
+		lbl_YearLvl.setFont(new Font("Dialog", Font.BOLD, 14));
+		lbl_YearLvl.setBounds(41, 143, 128, 22);
+		contentPane.add(lbl_YearLvl);
+		
+		JLabel lblNewLabel_3 = new JLabel("- 1st Semester");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_3.setForeground(new Color(245, 255, 250));
 		lblNewLabel_3.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNewLabel_3.setBounds(41, 143, 209, 22);
+		lblNewLabel_3.setBounds(109, 143, 128, 22);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("GWA:");
@@ -104,68 +113,84 @@ public class StudentView extends JFrame {
 		lbl_firstSemGWA1.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_firstSemGWA1.setForeground(new Color(245, 255, 250));
 		lbl_firstSemGWA1.setFont(new Font("Dialog", Font.BOLD, 14));
-		lbl_firstSemGWA1.setBounds(287, 143, 53, 14);
+		lbl_firstSemGWA1.setBounds(287, 143, 53, 22);
 		contentPane.add(lbl_firstSemGWA1);
 		
-		JLabel lbl_firstSemGWA2 = new JLabel("");
-		lbl_firstSemGWA2.setHorizontalAlignment(SwingConstants.LEFT);
-		lbl_firstSemGWA2.setForeground(new Color(245, 255, 250));
-		lbl_firstSemGWA2.setFont(new Font("Dialog", Font.BOLD, 14));
-		lbl_firstSemGWA2.setBounds(628, 143, 53, 14);
-		contentPane.add(lbl_firstSemGWA2);
+		firstSem = new JTable();
+		firstSem.setForeground(new Color(255, 255, 102));
+		firstSem.setGridColor(new Color(0, 0, 51));
+		firstSem.setBackground(new Color(0, 0, 51));
+		firstSem.setRowHeight(24);
+		firstSem.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		firstSem.setEnabled(false);
+		firstSem.setBounds(41, 181, 660, 181);
+		contentPane.add(firstSem);
 		
-		firstYear1 = new JTable();
-		firstYear1.setForeground(new Color(255, 255, 102));
-		firstYear1.setGridColor(new Color(0, 0, 51));
-		firstYear1.setBackground(new Color(0, 0, 51));
-		firstYear1.setRowHeight(24);
-		firstYear1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		firstYear1.setEnabled(false);
+		secondSem = new JTable();
+		secondSem.setForeground(new Color(255, 255, 102));
+		secondSem.setGridColor(new Color(0, 0, 51));
+		secondSem.setBackground(new Color(0, 0, 51));
+		secondSem.setRowHeight(24);
+		secondSem.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		secondSem.setEnabled(false);
+		secondSem.setBounds(41, 431, 660, 181);
+		contentPane.add(secondSem);
 		
-		studentYearLvl = "1st Year";
+		JComboBox<String> comboBoxYearLvl = new JComboBox<String>(ComboBoxModels.yearLevelModel);
+		comboBoxYearLvl.setBounds(382, 141, 319, 22);
+	    contentPane.add(comboBoxYearLvl);
+	    
+	    studentYearLvl = "1st Year";
 		studentSem = "1st Semester";
 		
-		firstYear1.setBounds(41, 181, 660, 181);
-		contentPane.add(firstYear1);
-		
 		DefaultTableModel tableModel = RetrieveStudentMarks.retrieveStudentMarksPerSem(studentYearLvl, studentSem, studentID);
-	    firstYear1.setModel(tableModel);
+		firstSem.setModel(tableModel);
+		
+		studentYearLvl = "1st Year";
+		studentSem = "2nd Semester";
+		
+		DefaultTableModel tableModel2 = RetrieveStudentMarks.retrieveStudentMarksPerSem(studentYearLvl, studentSem, studentID);
+		secondSem.setModel(tableModel2);
+		
+	    comboBoxYearLvl.addItemListener(new ItemListener() {
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	                // Get the selected year level from the combo box
+	                String selectedYear = comboBoxYearLvl.getSelectedItem().toString();
+	                System.out.println("Selected Year: " + selectedYear);
+	                // Update the studentYearLvl variable
+	                studentYearLvl = selectedYear;
+	                studentSem = "1st Semester";
+	                String studentSem2 = "2nd Semester";
+	                
+	                // Fetch data for the selected year level and semester
+	                DefaultTableModel tableModel = RetrieveStudentMarks.retrieveStudentMarksPerSem(studentYearLvl, studentSem, studentID);
+	                DefaultTableModel tableModel2 = RetrieveStudentMarks.retrieveStudentMarksPerSem(studentYearLvl, studentSem2, studentID);
+	                	
+	                if (tableModel.getRowCount() == 0) {
+	                    System.out.println("No data found for the selected criteria.");
+	                    firstSem.setModel(new DefaultTableModel());
+	                } else {
+	                    // Set the new table model to the firstYear1 table
+	                	firstSem.setModel(tableModel);
+	                	secondSem.setModel(tableModel2);
+	                	lbl_YearLvl = new JLabel(studentYearLvl);
+	                    
+	                    // Redraw the table
+	                	firstSem.revalidate();
+	                	firstSem.repaint();
+	                	secondSem.revalidate();
+	                	secondSem.repaint();
+	                }
+	            }
+	        }
+	    });
+	   
 	    
-	    
-	    TableColumnModel columnModel = firstYear1.getColumnModel(); 
-	    int columnCount = columnModel.getColumnCount();
-	    System.out.println("Col count: " + columnCount);
+	    /*TableColumnModel columnModel = firstYear1.getColumnModel(); 
 	    columnModel.getColumn(0).setPreferredWidth(25); 
         columnModel.getColumn(1).setPreferredWidth(300); 
         columnModel.getColumn(2).setPreferredWidth(5);
-        columnModel.getColumn(3).setPreferredWidth(10);
-        
-        studentSem = "2nd Semester";
-        
-        firstYear2 = new JTable();
-        firstYear2.setForeground(new Color(255, 255, 102));
-        firstYear2.setGridColor(new Color(0, 0, 51));
-        firstYear2.setBackground(new Color(0, 0, 51));
-        firstYear2.setRowHeight(24);
-        firstYear2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        firstYear2.setEnabled(false);
-		
-		firstYear2.setBounds(41, 395, 660, 181);
-		contentPane.add(firstYear2);
-		
-		DefaultTableModel tableModel2 = RetrieveStudentMarks.retrieveStudentMarksPerSem(studentYearLvl, studentSem, studentID);
-		firstYear2.setModel(tableModel2);
-	    
-	    
-	    TableColumnModel columnModel2 = firstYear2.getColumnModel(); 
-	    System.out.println("Col count: " + columnCount);
-	    columnModel2.getColumn(0).setPreferredWidth(25); 
-        columnModel2.getColumn(1).setPreferredWidth(300); 
-        columnModel2.getColumn(2).setPreferredWidth(5);
-        columnModel2.getColumn(3).setPreferredWidth(10);
-	    
-	    JComboBox<String> comboBox = new JComboBox<String>();
-	    comboBox.setBounds(382, 141, 319, 22);
-	    contentPane.add(comboBox);
+        columnModel.getColumn(3).setPreferredWidth(10);*/
 	}
 }

@@ -80,13 +80,13 @@ public class NewUser {
         // Load the image and create an ImageIcon
         String imagePath = "resources/images/torch.png";
         ImageIcon imageIcon = ResourceLoader.loadImage(imagePath);
-        Image image = imageIcon.getImage().getScaledInstance(131, 180, Image.SCALE_SMOOTH);
+        Image image = imageIcon.getImage().getScaledInstance(150, 200, Image.SCALE_SMOOTH);
         ImageIcon scaledImageIcon = new ImageIcon(image);
 
         // Create a JLabel to hold the image
         JLabel lblImage = new JLabel(scaledImageIcon);
         lblImage.setBackground(Color.BLACK);
-        lblImage.setBounds(0, 11, 131, 429);
+        lblImage.setBounds(10, 46, 116, 429);
         frmEnrollNewUser.getContentPane().add(lblImage);
         
         textField_email = new JTextField();

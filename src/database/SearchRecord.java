@@ -14,14 +14,19 @@ public class SearchRecord {
 	    Connection conn = null;
 	    PreparedStatement ps = null;
 	    ResultSet rs = null;
+	    String sql = null;
 
 	    try {
 	        conn = DatabaseConnector.getConnection();
-	        String sql = "SELECT * FROM student_record WHERE studentRecord_studentID = ? OR studentRecord_courseID = ? ORDER BY timestamp_column DESC";
-	        ps = conn.prepareStatement(sql);
-	        ps.setString(1, searchVal);
-	        ps.setString(2, searchVal);
-
+	        if (searchVal.isEmpty()) {
+	        	sql = "SELECT * FROM student_record ORDER BY timestamp_column DESC LIMIT 100";
+	        	ps = conn.prepareStatement(sql);
+	        } else {
+	        	sql = "SELECT * FROM student_record WHERE studentRecord_studentID = ? OR studentRecord_courseID = ? ORDER BY timestamp_column DESC";
+	        	ps = conn.prepareStatement(sql);
+		        ps.setString(1, searchVal);
+		        ps.setString(2, searchVal);
+	        }
 	        rs = ps.executeQuery();
 
 	        // Define your custom column names

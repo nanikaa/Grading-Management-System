@@ -22,6 +22,8 @@ public class Home extends JFrame {
     private JPanel contentPane;
     private JTable table;
     private JLabel lblImage;
+    private JButton btnDelete;
+    private JButton btnUpdate;
 
     // Variables to store selected row data
     private int selectedRecordNumber;
@@ -95,23 +97,31 @@ public class Home extends JFrame {
                     int selectedRow = table.getSelectedRow();
                     if (selectedRow != -1) { // If a row is selected
                         // Retrieve data from selected row
-                    	
-                    	selectedRecordNumber = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
+                        selectedRecordNumber = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
                         selectedMarks = Float.parseFloat(table.getValueAt(selectedRow, 1).toString());
                         selectedCourseID = table.getValueAt(selectedRow, 2).toString();
                         selectedStudentID = table.getValueAt(selectedRow, 3).toString();
                         selectedYearLvl = table.getValueAt(selectedRow, 4).toString();
                         selectedSem = table.getValueAt(selectedRow, 5).toString();
                         
+                        // Enable buttons
+                        btnDelete.setEnabled(true);
+                        btnUpdate.setEnabled(true);
+                        
                         // Call method to update UI components in UpdateRecord
                         updateUIInUpdateRecord();
+                    } else {
+                        // If no row is selected, disable buttons
+                    	btnDelete.setEnabled(false);
+                    	btnUpdate.setEnabled(false);
                     }
                 }
             }
         });
 
-        JButton btn_delete = new JButton("Delete Record");
-        btn_delete.addActionListener(new ActionListener() {
+        btnDelete = new JButton("Delete Record");
+        btnDelete.setEnabled(false); // Initially disable the button
+        btnDelete.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                 // Display the DeleteRecord JFrame
                 DeleteRecord deleteRecordFrame = new DeleteRecord();
@@ -119,12 +129,13 @@ public class Home extends JFrame {
                 dispose();
             }
         });
-        btn_delete.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_delete.setBounds(42, 310, 130, 46);
-        contentPane.add(btn_delete);
+        btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btnDelete.setBounds(42, 310, 130, 46);
+        contentPane.add(btnDelete);
 
-        JButton btn_update = new JButton("Update Record");
-        btn_update.addActionListener(new ActionListener() {
+        btnUpdate = new JButton("Update Record");
+        btnUpdate.setEnabled(false);
+        btnUpdate.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                 // Display the UpdateRecord JFrame
                 UpdateRecord updateRecordFrame = new UpdateRecord();
@@ -133,9 +144,9 @@ public class Home extends JFrame {
             }
         });
         
-        btn_update.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_update.setBounds(42, 253, 130, 46);
-        contentPane.add(btn_update);
+        btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btnUpdate.setBounds(42, 253, 130, 46);
+        contentPane.add(btnUpdate);
 
         JButton btn_add = new JButton("New Record");
         btn_add.addActionListener(new ActionListener() {

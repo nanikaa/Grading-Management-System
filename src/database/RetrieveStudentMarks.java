@@ -5,6 +5,8 @@ import javax.swing.table.*;
 
 public class RetrieveStudentMarks {
     public static DefaultTableModel retrieveStudentMarksPerSem(String year, String semester, String studentNumber) {
+    	System.out.println("Year: " + year);
+    	System.out.println("Sem: " + semester);
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
