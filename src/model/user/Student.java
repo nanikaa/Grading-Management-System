@@ -8,9 +8,10 @@ public class Student {
 
     public Student(String id, String firstName, String lastName, String email) {
         this.id = id;
-        this.fName = firstName;
-        this.lName = lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
+        this.permanentAddress = permanentAddress;
     }	
 
     // Getters and setters
@@ -23,19 +24,19 @@ public class Student {
     }
     
     public String getFirstName() {
-        return fName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.fName = firstName;
+        this.firstName = firstName;
     }
     
     public String getLastName() {
-        return lName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.lName = lastName;
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -44,5 +45,13 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPermanentAddress() {
+        return permanentAddress;
+    }
+
+    public void setPermanentAddress(String permanentAddress) {
+        this.permanentAddress = permanentAddress;
     }
 }
