@@ -29,6 +29,7 @@ public class CreateUser {
                 statementStudent.setString(2, firstName);
                 statementStudent.setString(3, lastName);
                 statementStudent.setString(4, email);
+                statementStudent.setString(5, address);
                 int rowsInsertedStudent = statementStudent.executeUpdate();
 
                 if (rowsInsertedStudent <= 0) {
